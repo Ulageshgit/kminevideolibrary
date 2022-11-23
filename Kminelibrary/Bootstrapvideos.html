@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <base href="www.kminevideolibrary.tk">
+    <link href="images/kmine.png" rel="shortcut icon" type="image/png">
+    <title>Kmine video library</title>
+    <style>
+nav ul{
+  float: right;
+  margin-right: 30px;
+}
+nav ul li{
+  display: inline-block;
+}
+nav ul li a{
+  color: white;
+  display: block;
+  padding: 0 15px;
+  line-height: 70px;
+  font-size: 20px;
+  background: #063247;
+  transition: .5s;
+  text-decoration: none;
+}
+nav ul li a:hover,
+nav ul li a.active{
+  color: #23dbdb;
+}
+nav ul ul{
+  position: absolute;
+  top: 85px;
+  border-top: 3px solid #23dbdb;
+  opacity: 0;
+  visibility: hidden;
+}
+nav ul li:hover > ul{
+  top: 70px;
+  opacity: 1;
+  visibility: visible;
+  transition: .3s linear;
+}
+nav ul ul li{
+  width: 150px;
+  display: list-item;
+  position: relative;
+  border: 1px solid #042331;
+  border-top: none;
+}
+nav ul ul li a{
+  line-height: 50px;
+}
+nav ul ul ul{
+  border-top: none;
+}
+nav ul ul ul li{
+  position: relative;
+  top: -70px;
+  left: 150px;
+}
+nav ul ul li a i{
+  margin-left: 45px;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    background: #0c111b;
+    position: relative;
+    font-family: roboto, sans-serif;
+}
+
+/*.navbar{
+    width: 140%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 4%;
+    background: #0c111b;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+}*/
+
+.navbar-brand{
+    height: 70px;
+}
+
+.navbar-nav{
+    margin-top: 10px;
+    display: flex;
+    list-style:none;
+    z-index: 5;
+}
+
+.nav-items a{
+    text-decoration: none;
+    text-transform: capitalize;
+    color: #fff;
+    opacity: 0.9;
+}
+
+.right-container{
+    display: block;
+    margin-left: auto;
+}
+
+.search-box{
+    border: none;
+    border-bottom: 1px solid #aaa;
+    background: transparent;
+    outline: none;
+    height: 30px;
+    color:#fff;
+    width: 250px;
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: 500;
+    transition: .5s;
+}
+
+.search-box:focus{
+    width: 400px;
+    border-color: #1f80e0;
+}
+
+.sub-btn{
+    background: #1f80e0;
+    height: 30px;
+    padding: 0 20px;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    margin: 0 10px;
+}
+
+.login-link{
+    color: #fff;
+    opacity: 0.9;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+
+.carousel-container{
+    position: relative;
+    width: 100%;
+    height: 600px;
+    padding: 20px 0;
+    overflow-x: hidden;
+    margin-top: 80px;
+}
+
+.carousel{
+    display: flex;
+    width: 92%;
+    height: 100%;
+    position: relative;
+    margin: auto;
+}
+
+.slider{
+    flex: 0 0 auto;
+    margin-right: 30px;
+    position: relative;
+    background: rgba(0, 0, 0,0.5);
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    transition: 1s;
+    overflow: hidden;
+}
+
+.slider img{
+    width: 70%;
+    min-height: 100%;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+}
+
+.slide-content{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(to right, #030b17 80%, #0c111b00);
+    color: #fff;
+}
+
+/*.movie-title{
+    padding-left: 50px;
+    text-transform: capitalize;
+    margin-top: 80px;
+}*/
+
+.movie-des{
+    width: 80%;
+    line-height: 30px;
+    padding-left: 50px;
+    margin-top: 30px;
+    opacity: 0.8;
+}
+
+
+.video-card-container{
+    position: relative;
+    width: 92%;
+    margin: auto;
+    height: 10vw;
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+
+.video-card{
+    position: relative;
+    min-width: calc(100%/5 - 10px);
+    width: calc(100%/5 - 10px);
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #030b17;
+}
+
+.video-card-image,
+.card-video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-video{
+    position: absolute;
+}
+
+.video-card:hover .video-card-image{
+    display: none;
+}
+
+
+
+.title{
+    color: #fff;
+    opacity: 0.9;
+    padding-left: 4%;
+    text-transform: capitalize;
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 2rem;
+}
+
+.movies-list{
+    width: 100%;
+    height: 220px;
+    position: relative;
+    margin: 10px 0 20px;
+}
+
+.card-container{
+    position: relative;
+    width: 92%;
+    padding-left: 10px;
+    height: 220px;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-behavior: smooth;
+}
+
+.card-container::-webkit-scrollbar{
+    display: none;
+}
+
+.card{
+    position: relative;
+    min-width: 300px;
+    width: 150px;
+    height: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-right: 10px;
+    transition: .5s;
+}
+
+.card-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card:hover{
+    transform: scale(1.1);
+}
+
+.card:hover .card-body{
+    opacity: 1;
+}
+
+.card-body{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: linear-gradient(to bottom, rgba(4, 8, 15, 0), #192133 90%);
+    padding: 10px;
+    transition: 0.5s;
+}
+
+.name{
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-top: 60%;
+}
+
+.des{
+    color: #fff;
+    opacity: 0.8;
+    margin: 5px 0;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.watchlist-btn{
+    position: relative;
+    width: 100%;
+    text-transform: capitalize;
+    background: none;
+    border: none;
+    font-weight: 500;
+    text-align: right;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 5px 0;
+    cursor: pointer;
+    padding: 10px 5px;
+    border-radius: 5px;
+}
+
+.watchlist-btn::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -5px;
+    height: 35px;
+    width: 35px;
+    background-image: url(images/add.png);
+    background-size: cover;
+    transform: scale(0.4);
+}
+
+.watchlist-btn:hover{
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.pre-btn,
+.nxt-btn{
+    position: absolute;
+    top: 0;
+    width: 5%;
+    height: 100%;
+    z-index: 2;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.pre-btn{
+    left: 0;
+    background: linear-gradient(to right, #0c111b 0%, #0c111b00);
+}
+
+.nxt-btn{
+    right: 0;
+    background: linear-gradient(to left, #0c111b 0%, #0c111b00);
+}
+
+.pre-btn img,
+.nxt-btn img{
+    width: 15px;
+    height: 20px;
+    opacity: 0;
+}
+
+.pre-btn:hover img,
+.nxt-btn:hover img{
+    opacity: 1;
+}
+
+.copyright {
+    border-top: 1px solid white;
+    text-align: center;
+    padding-top: 30px;
+  }
+  #footer {
+    background: #063247;
+    padding: 0 0 30px 0;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 26rem;
+}
+  
+.credits {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: white;
+  }
+  #footer.container{
+    padding-top: 72px;
+    align-items: center;
+  }
+  #footer.a{
+    color: #ff4400;
+    text-decoration: underline;
+  }
+  #collapsibleNavbar{
+    z-index: 5;
+  }
+  
+</style>
+</head>
+
+<body>
+    <header>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+        <img src="images/kminelogotrans.png" class="navbar-brand" alt="">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-items"><a href="index.html">Home</a></li>
+            <li class="nav-items"><a href="Allkmine.html">Videos</a></li>
+            <li class="nav-items"><a href="contactt.html">Contact</a></li>
+
+            <li>
+               <a href="#">Filter
+               <i class="fas fa-caret-down"></i>
+               </a>
+               <ul>
+                  <li><a href="Htmlvideos.html">Html</a></li>
+                  <li><a href="CSSvideos.html">CSS</a></li>
+                  <li><a href="Bootstrapvideos.html">Bootstrap</a></li>
+                  <li><a href="Gitvideos.html">Git</a></li>
+                  <li><a href="Linuxvideos.html">Linux</a></li>
+               </ul>
+            </li>
+
+            <li>
+                     <a href="#">Others
+                     <i class="fas fa-caret-right"></i>
+                     </a>
+                     <ul>
+                        <li><a href="https://us06web.zoom.us/j/87383031079?pwd=ZmhBS3A2TVVZR01wRGNLd1ZOV2pJZz09">Zoom</a></li>
+                        <li><a href="https://docs.google.com/spreadsheets/d/1ca8GqlzRsf9S8vV-5KR5WIn5IvqdF4Pt1WsIOwpIv70/edit#gid=1733385500">Works</a></li>
+                        <li><a href="https://docs.google.com/spreadsheets/d/1rs18H6Rha-uOdgRVWMwBlHXxDSZM6pk-jX3OfvzlvrQ/edit#gid=0">Time sheet</a></li>
+                     </ul>
+                  </li>
+        </ul>
+
+         <!--<div class="right-container">
+            <input type="text" class="search-box" placeholder="search" id="search-item" onkeyup="search()">
+            <button class="sub-btn">Register</button>
+            <a href="#" class="login-link">login</a>-->
+        </div>
+    </div>
+    </nav>
+</header>
+
+<h1 class="title">Bootstarp videos</h1>
+<div class="movies-list">
+    <button class="pre-btn"><img src="images/pre.png" alt=""></button>
+    <button class="nxt-btn"><img src="images/nxt.png" alt=""></button>
+    <div class="card-container" id="card-container">
+             <div class="card">
+             <iframe width="300" height="200" src="https://www.youtube.com/embed/8r0clrVvfes" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+             </div>
+             <div class="card">
+             <iframe width="300" height="200" src="https://www.youtube.com/embed/BvZdtYLXO-c" title="YouTube video player" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+             </div>
+             <div class="card">
+             <iframe width="300" height="200" src="https://www.youtube.com/embed/FOO6uxwUHFE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+             </div>      
+    </div>
+</div>
+    <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Kmine solutions</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        
+        Designed by <a href="https://kmine.com/">Kmine solutions</a>
+      </div>
+    </div>
+    </footer>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</html>
